@@ -11,7 +11,7 @@
     margin: 0 auto;
 }
 
-.bg_a {background-image: url("../images/bg/carousel1.jpg");}
+/* .bg_a {background-image: url("../images/bg/carousel1.jpg");}
 .bg_b {background-image: url("../images/bg/carousel2.jpg");}
 .bg_c {background-image: url("../images/bg/carousel3.jpg");}
 .bg_d {background-image: url("../images/bg/carousel4.jpg");}
@@ -23,7 +23,7 @@
 	.bg_c {background-image: url("../images/bg/c.jpg");}
 	.bg_d {background-image: url("../images/bg/d.jpg");}
 	.bg_e {background-image: url("../images/bg/e.jpg");}
-}
+} */
 
 /*博主信息*/
 .blogerinfo {

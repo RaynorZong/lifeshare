@@ -30,6 +30,15 @@
 	<link href="/static/js/magnify-master/dist/jquery.magnify.min.css" rel="stylesheet">
 	<script src="/static/js/magnify-master/dist/jquery.magnify.min.js"></script>
     
+    <script src="https://cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+	<link href="https://cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/static/fsLayui-1.8.2/plugins/layui/css/layui.css" media="all"/>
+	<link rel="stylesheet" type="text/css" href="/static/fsLayui-1.8.2/css/fs.css" media="all"/>
+	<script type="text/javascript" src="/static/fsLayui-1.8.2/plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="/static/fsLayui-1.8.2/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/fsLayui-1.8.2/plugins/frame/js/fsDict.js?v=1.5.0"></script>
+	<script type="text/javascript" src="/static/fsLayui-1.8.2/plugins/frame/js/fs.js?v=1.5.0"></script>
+	<script type="text/javascript" src="/static/fsLayui-1.8.2/plugins/frame/js/frame.js?v=1.5.0"></script>
 </head>
 <body>
 	<!-- 导航 -->
@@ -38,7 +47,7 @@
     <!-- 主体（一般只改变这里的内容） -->
     <div class="blog-body">
         <!-- 这个一般才是真正的主体内容 -->
-        <div class="blog-container">
+        <div class="blog-container" style="margin-top:-70px">
             <div class="blog-main">
                 <blockquote class="layui-elem-quote sitemap layui-breadcrumb shadow">
                 	<a href="/" title="网站首页">网站首页</a>
@@ -56,29 +65,35 @@
                             <span >
                             	
                             </span>
-                            <a th:href=" '/foreground/otherPerson/'+ ${article.userId}"   th:text="'作者：' +${article.author}  ">
-                             
-                            </a> 
+                            <a th:href=" '/foreground/otherPerson/'+ ${article.userId}"   th:text="'作者：' +${article.author}  "></a>
                             <span th:text="'浏览量：'+${article.click}"></span>
-                            
-                        </div> 
-                        	<form id="ajax-contact-form" class="form-horizontal deCollectionForm" action="/admin/user/removeCollection" method="post">
+                            <span th:if="${session.user != null} " >
+                            	<a href="javacript:void(0);" onclick='delArticle()' class="layui-btn layui-btn-xs"
+                               		th:if="${session.user.userId}  eq  ${article.userId}">删除</a>
+                            	<a href="javacript:void(0);" class="layui-btn layui-btn-xs"  onclick="edit()" 
+                            		 th:if="${session.user.userId}  eq  ${article.userId}">编辑</a>
+                            </span>
+                        </div>
+                        <div>
+                                <form id="ajax-contact-form" class="form-horizontal deCollectionForm" action="/admin/user/removeCollection" method="post">
                                     <div class="actions" style="text-align:right">
-                                      <input type="hidden" id="artId" name="artId" th:value="${article.articleId}"/>
-                                      <input type="hidden" name="collectionFlag" class="collectionFlag"/>
-                                      <button type="button"  onclick="deCollection()" 
-                                      class="layui-btn  layui-btn-xs" th:if="${flag==true}"> <i class="layui-icon">&#xe640;</i> 取消收藏</button>
+                                        <input type="hidden" id="artId" name="artId" th:value="${article.articleId}"/>
+                                        <input type="hidden" name="collectionFlag" class="collectionFlag"/>
+
+                                        <button type="button"  onclick="deCollection()"
+                                                class="layui-btn  layui-btn-xs" th:if="${flag==true}"> <i class="layui-icon">&#xe640;</i> 取消收藏</button>
                                     </div>
                                 </form>
                                 <form id="ajax-contact-form" class="form-horizontal doCollectionForm" action="/admin/user/addCollection" method="post">
                                     <div class="actions" style="text-align:right">
-                                      <input type="hidden" name="artId" th:value="${article.articleId}"/>
-									  <input type="hidden" name="collectionFlag" class="collectionFlag"/>
-                                      <button type="button" class="layui-btn layui-btn-xs" th:if="${flag==false}"  
-                                      
-                                      onclick="doCollection()"><i class="layui-icon"></i></button>
+                                        <input type="hidden" name="artId" th:value="${article.articleId}"/>
+                                        <input type="hidden" name="collectionFlag" class="collectionFlag"/>
+                                        <button type="button" class="layui-btn layui-btn-xs" th:if="${flag==false}"
+                                                onclick="doCollection()"><i class="layui-icon"></i></button>
+
                                     </div>
                                 </form>
+                        </div>
                         <div id="articleContent" style="overflow: hidden;" class="article-detail-content" th:utext="${article.content}">
                     	</div>
                     </div>
@@ -260,13 +275,51 @@
 	    	    }
 	    	});
 
-	    	
-	    	//alert("")
-	    }
+	    };
+        function  delArticle() {
+        	var id = $("#artId").val();
+            layer.msg('确认删除当前文章?', {
+                btn: ['确认','取消' ],
+                skin: 'layui-layer-molv' //样式类名  自定义样式
+                ,closeBtn: 0    // 是否显示关闭按钮
+                ,anim: 1 //动画类型
+                ,yes: function(index, layero){
+                	del(id)
+                }
+                ,btn2: function(index, layero){
+                    layer.msg("操作取消")
+                }
+            });
+        }
+        function del(id) {
+            $.ajax({
+                type : "post",
+                url : "/admin/article/delete",
+                data : {articleId:id},
+                async : false,
+                success:function (data) {
+                	window.location.href="/"
+                }
+            })
+        };
+        function edit(){
+        	var id = $("#artId").val();
+            layer.open({
+                type: 2,
+                skin: 'layui-layer-demo', //样式类名
+                title: '编辑',
+                closeBtn: 0, //不显示关闭按钮
+                anim: 2,
+                area: ['1093px', '800px'],
+                shadeClose: true, //开启遮罩关闭
+                content: '/admin/article/one.html?articleId='+id+'&_mode=edit',
+              	end:function(index,layero){
+                	window.location.reload();
+              	}
+            });
+        }
 	</script>
 	
-	
-    
     <script th:inline="javascript">
 	/*<![CDATA[*/ 
 		

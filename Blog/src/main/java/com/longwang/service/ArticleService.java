@@ -30,7 +30,13 @@ public interface ArticleService {
    * @return
    */
   public List<Article> list();
-
+  /**
+   * 所有文章
+   * @return
+   */
+ // public List<Article> getFive();
+  
+  
   /**
    * n条置顶原创文章（博主推荐）
    * @param n

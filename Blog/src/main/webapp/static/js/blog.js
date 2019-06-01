@@ -10,6 +10,7 @@ function classifyList(classifyId){
 		    	setTimeout(function(){
 		    	$.post("/admin/article/list",{page:page,pageSize:5,classify:classifyId}, function(data) {
 		    		 	var lis = [];
+		    		 	
 				        for(var i = 0; i < data.data.length; i++){
 				        	var content=delHtmlTag(data.data[i].content);
 				        	if(content.length>=80){

@@ -143,7 +143,7 @@ public class ArticleAdminController {
     resultMap.put("total", total);
     return resultMap;
   }
-
+  
   /**
    * 根据ID查找文章
    * 
@@ -170,7 +170,35 @@ public class ArticleAdminController {
     resultMap.put("data", trmpMap);
     return resultMap;
   }
-
+  
+  /**
+   * 根据ID查找文章
+   * 
+   * @param articleId
+   * @return
+   */
+  @RequestMapping("/getFive")
+  public @ResponseBody Map<String, Object> find() {
+    Map<String, Object> resultMap = new HashMap<String, Object>();
+    Map<String, Object> trmpMap = new HashMap<String, Object>();
+    Article article = articleService.findById(1);
+    trmpMap.put("articleId", article.getArticleId());
+    trmpMap.put("title", article.getTitle());
+    trmpMap.put("content", article.getContent());
+    trmpMap.put("publishDate", article.getPublishDate());
+    trmpMap.put("author", article.getAuthor());
+    trmpMap.put("classify", article.getClassify().getClassifyId());
+    trmpMap.put("click", article.getClick());
+    trmpMap.put("commentNum", article.getCommentNum());
+    trmpMap.put("isTop", article.getIsTop());
+    trmpMap.put("isOriginal", article.getIsOriginal());
+    trmpMap.put("imageName", article.getImageName());
+    resultMap.put("errorNo", 0);
+    resultMap.put("data", trmpMap);
+    return resultMap;
+  }
+  
+  
   /**
    * 添加或者修改文章
    * 

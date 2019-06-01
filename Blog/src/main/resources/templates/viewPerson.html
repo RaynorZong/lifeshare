@@ -32,34 +32,25 @@
 	<div class="blog-user"></div>
 	<!-- 主体（一般只改变这里的内容） -->
 	<div class="blog-body">
-		<div class="layui-carousel blog-bg" id="carousel">
-			<div carousel-item="">
-				<div class="bg bg_a"></div>
-				<div class="bg bg_b"></div>
-				<div class="bg bg_c"></div>
-				<div class="bg bg_d"></div>
-				<div class="bg bg_e"></div>
-			</div>
-		</div>
+		 
 		<div class="blog-container">
 			<div class="blog-main">
 				<!-- 网站公告提示 -->
-				<div class="home-tips shadow">
+				<!-- <div class="home-tips shadow">
 					<i style="float: left; line-height: 17px;" class="fa fa-volume-up"></i>
 					<div class="home-tips-container">
 						<span th:each="n : ${session.noticeList}" style="color: #009688"
 							th:utext="${n.content}"></span>
 					</div>
-				</div>
+				</div> -->
 				<!--左边笔记列表-->
 				<div class="blog-main-left animated slideInLeft">
 					<div class="flow-default">
 					   <form class="layui-form" id="edit_form" isLoad="1" action="/save">
 	  <input type="hidden" name="userId" th:value="${user.userId}"/>
-    <!-- <input type="hidden" name="registrationDate" th:value="${user.registrationDate}"/> -->
     <input type="hidden" name="openId" th:value="${user.openId}"/>
     
-	  <div class="layui-form-item" style="width: 800px;">
+	  <div class="layui-form-item" style="width: 800px;padding-top: 10px">
 	    <label class="layui-form-label">用户名</label>
 	    <div class="layui-input-block">
 	      <input type="text" name="username" required="" lay-verType="tips" lay-verify="required" th:value="${user.username}"  autocomplete="off" class="layui-input" />

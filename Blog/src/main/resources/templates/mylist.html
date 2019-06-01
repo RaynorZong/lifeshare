@@ -32,27 +32,11 @@
 	<div class="blog-user"></div>
 	<!-- 主体（一般只改变这里的内容） -->
 	<div class="blog-body">
-		<div class="layui-carousel blog-bg" id="carousel">
-			<div carousel-item="">
-				<div class="bg bg_a"></div>
-				<div class="bg bg_b"></div>
-				<div class="bg bg_c"></div>
-				<div class="bg bg_d"></div>
-				<div class="bg bg_e"></div>
-			</div>
-		</div>
-		<div class="blog-container">
+		 
+		<div class="blog-container" >
 			<div class="blog-main">
-				<!-- 网站公告提示 -->
-				<div class="home-tips shadow">
-					<i style="float: left; line-height: 17px;" class="fa fa-volume-up"></i>
-					<div class="home-tips-container">
-						<span th:each="n : ${session.noticeList}" style="color: #009688"
-							th:utext="${n.content}"></span>
-					</div>
-				</div>
 				<!--左边笔记列表-->
-				<div class="blog-main-left animated slideInLeft">
+				<div class="blog-main-left animated slideInLeft" style="padding-top: 20px">
 					<div class="flow-default" id="parentArticleList"></div>
 				</div>
 				
@@ -172,7 +156,6 @@
 			    	setTimeout(function(){
 			    	$.post("/admin/article/list",{p:1,page:page,pageSize:5}, function(data) {
 			    		console.log(data);
-		    		 	console.log(data.data.length);
 			    		 	var lis = [];
 					        for(var i = 0; i < data.data.length; i++){
 					        	var content=delHtmlTag(data.data[i].content);//取出笔记内容（去掉html标签）
