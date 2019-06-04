@@ -11,7 +11,7 @@
             <!-- Long -->
             <a class="blog-logo" href="/" >生活方式分享平台</a>
             <!-- 导航菜单 -->
-            <ul class="layui-nav" lay-filter="nav" style="padding-left:100px;width:1200px;">
+            <ul class="layui-nav" lay-filter="nav" style="padding-left:100px; ">
 				    <li class="layui-nav-item"  >
 				        <a href="/"><i class="fa fa-home fa-fw"></i>&nbsp;网站首页</a>
 				    </li>
@@ -40,6 +40,9 @@
                         </dl>
 				        <a href="/webLogin" th:if="${session.user == null}" th:text="登录"><i class="fa fa-paper-plane-o fa-fw"></i>&nbsp;登录</a>
 				        
+				    </li>
+				    <li class="layui-nav-item" >
+				    	<a href="/regist" th:if="${session.user == null}" th:text="注册"><i class="fa fa-hourglass-half fa-fw"></i>&nbsp;注册</a>
 				    </li>
 				    <!-- <li  th:if="${session.user != null}" id="UserInfoLi">
 				    	<div style="border-radius: 10px;width:80px;height:80px;background-color: white">

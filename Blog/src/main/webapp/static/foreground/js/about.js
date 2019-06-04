@@ -38,7 +38,7 @@
     	                if(res.success){
     	                	 layer.close(index);
     	                     var content = data.field.content;
-    	                     var html = '<li><div class="comment-parent"><img src="'+res.comment.user.headPortrait+'" alt="'+res.comment.user.nickname+'"/><div class="info"><span class="username">'+res.comment.user.nickname+'</span>';
+    	                     var html = '<li><div class="comment-parent"> <img src=/static/images/'+res.comment.user.headPortrait+'\ alt="'+res.comment.user.nickname+'"/><div class="info"><span class="username">'+res.comment.user.nickname+'</span>';
     	                     if(res.comment.user.userId=='1'){
     	                    	 	html+=" <span class=\"is_bloger\">博主</span>&nbsp;";
 						         }
@@ -74,7 +74,7 @@
     	            success: function (res) {
     	                if(res.success){
     	                	layer.close(index);
-    	                	var html = '<div class="comment-child"><img src="'+res.reply.user.headPortrait+'" alt="'+res.reply.user.nickname+'"/><div class="info"><span class="username">'+res.reply.user.nickname+' : </span>';
+    	                	var html = '<div class="comment-child"><img src=/static/images/'+res.reply.user.headPortrait+'\ alt="'+res.reply.user.nickname+'"/><div class="info"><span class="username">'+res.reply.user.nickname+' : </span>';
     	                	if(res.reply.user.userId=='1'){
 	                    	 	html+=" <span class=\"is_bloger\">博主</span>&nbsp;";
 					         }

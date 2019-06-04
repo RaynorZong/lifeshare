@@ -109,7 +109,7 @@
                                         <textarea name="content" lay-verify="content" id="remarkEditor" placeholder="请输入内容" class="layui-textarea"></textarea>
                                     </div>
                                     <div class="layui-form-item">
-                                        <button class="layui-btn" lay-submit="formLeaveMessage" lay-filter="formLeaveMessage">提交评论</button>
+                                        <button class="layui-btn" lay-submit="formLeaveMessage"lay-filter="formLeaveMessage">提交评论</button>
                                     </div>
                                 </form>
                             </div>
@@ -347,14 +347,14 @@
 					                	 for(var r = 0; r < data2.data.length; r++){
 						                	 str+="<div class=\"comment-child\">\n" + 
 						                		"     <a href=\"/foreground/otherPerson/"+data2.data[r].user.userId+"\" target=\"_blank\">"+
-							     				"      <img src=\""+data2.data[r].user.headPortrait+"\" alt=\""+data2.data[r].user.nickname+"\" />\n" + 
+							     				"      <img style=\"width:44px;height:44px;border-radius:50% ; \" src=/static/images\/"+data.data[i].user.headPortrait+"\ alt=\""+data2.data[r].user.nickname+"\" />\n" + 
 							     				"</a> "+
-							    				"      <div class=\"info\">\n" + 
-							    				"          <span class=\"username\">	"+data2.data[r].user.nickname+" : </span>";
+							    				"      <div style=\"margin-top:-30px\"  class=\"info\">\n" + 
+							    				"          <span  class=\"username\">	"+data2.data[r].user.nickname+" : </span>";
 							    				if(data2.data[r].user.userId=='1'){
 							    					str+="<span class=\"is_bloger\">博主</span>&nbsp;";
 										          }
-							    		   str+="回复 <span class=\"username\">@"+data.data[i].user.nickname+" </span>";
+							    		   str+="回复 <span  class=\"username\">@"+data.data[i].user.nickname+" </span>";
 							    		   if(data.data[i].user.userId=='1'){
 						    					str+="<span class=\"is_bloger\">博主</span>&nbsp;";
 									          }
@@ -368,9 +368,9 @@
 					        	lis.push( "<li>\n" + 
 										"               <div class=\"comment-parent\">\n" + 
 										"     <a href=\"/foreground/otherPerson/"+data.data[i].user.userId+"\" target=\"_blank\">\n"+
-										"                   <img src=\""+data.data[i].user.headPortrait+"\" alt=\""+data.data[i].user.nickname+"\" />\n" + 
+										"                   <img style=\"width:44px;height:44px;border-radius:50% ; \" src=/static/images\/"+data.data[i].user.headPortrait+"\ alt=\""+data.data[i].user.nickname+"\" />\n" + 
 										"</a>\n"+
-										"                   <div class=\"info\">\n" + 
+										"                   <div style=\"margin-top:-30px\" class=\"info\">\n" + 
 										"                       <span class=\"username\">"+data.data[i].user.nickname+"</span>\n"); 
 						        	if(data.data[i].user.userId=='1'){
 						        		lis.push("<span class=\"is_bloger\">博主</span>&nbsp;");
